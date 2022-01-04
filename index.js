@@ -28,7 +28,8 @@ module.exports.showAll = async () => {
             ],
         })
         .then(({index}) => {
-            if(index >= 0){
+            if(index >= 0)
+            {
                 // 选中任务
                 inquirer
                     .prompt({
@@ -56,7 +57,17 @@ module.exports.showAll = async () => {
                                 db.write(list)
                                 break;
                             case 'updateTitle':
-
+                                inquirer.prompt( {
+                                    type: 'input',
+                                    name: 'title',
+                                    message: "What's your title",
+                                    default() {
+                                        return list[index].title;
+                                    },
+                                }).then(({title}) => {
+                                    list[index].title = title
+                                    db.write(list)
+                                });
                                 break;
                             case 'remove':
                                 list.splice(index,1)
