@@ -76,7 +76,14 @@ module.exports.showAll = async () => {
                         }
                     });
             }else if(index === -2){
-                //输入姓名
+                inquirer.prompt( {
+                    type: 'input',
+                    name: 'title',
+                    message: "What's your title",
+                }).then(({title}) => {
+                    list.push({title,done: false})
+                    db.write(list)
+                });
             }
         });
 }
