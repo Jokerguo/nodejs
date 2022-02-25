@@ -8,6 +8,7 @@ module.exports.add = async (title) => {
   list.push({ title: title, done: false })
   // 存储任务到文件
   await db.write(list)
+  console.log('添加成功')
 }
 
 module.exports.clear = async () => {
